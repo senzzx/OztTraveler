@@ -1,0 +1,7 @@
+OztTraveler/.settings
+OztTraveler/logs/*
+OztTraveler/target
+OztTraveler/.classpath
+**/bin/
+**/*.iml
+.idea
