@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ozt.traveler.dao.OztTravelArticleMapper">
+  <resultMap id="BaseResultMap" type="com.ozt.traveler.entity.OztTravelArticle">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="article_type" jdbcType="TINYINT" property="articleType" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="city_id" jdbcType="INTEGER" property="cityId" />
+    <result column="travel_date" jdbcType="DATE" property="travelDate" />
+    <result column="user_trip_id" jdbcType="INTEGER" property="userTripId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ozt.traveler.entity.OztTravelArticle">
+    <result column="article" jdbcType="LONGVARCHAR" property="article" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, title, article_type, status, address, city_id, travel_date, user_trip_id, 
+    update_time, create_time
+  </sql>
+  <sql id="Blob_Column_List">
+    article
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ozt_travel_article
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ozt_travel_article
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ozt.traveler.entity.OztTravelArticle">
+    insert into ozt_travel_article (id, user_id, title, 
+      article_type, status, address, 
+      city_id, travel_date, user_trip_id, 
+      update_time, create_time, article
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{articleType,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, #{address,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=INTEGER}, #{travelDate,jdbcType=DATE}, #{userTripId,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{article,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ozt.traveler.entity.OztTravelArticle">
+    insert into ozt_travel_article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="articleType != null">
+        article_type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="travelDate != null">
+        travel_date,
+      </if>
+      <if test="userTripId != null">
+        user_trip_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="article != null">
+        article,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="articleType != null">
+        #{articleType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="travelDate != null">
+        #{travelDate,jdbcType=DATE},
+      </if>
+      <if test="userTripId != null">
+        #{userTripId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="article != null">
+        #{article,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ozt.traveler.entity.OztTravelArticle">
+    update ozt_travel_article
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="articleType != null">
+        article_type = #{articleType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="travelDate != null">
+        travel_date = #{travelDate,jdbcType=DATE},
+      </if>
+      <if test="userTripId != null">
+        user_trip_id = #{userTripId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="article != null">
+        article = #{article,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ozt.traveler.entity.OztTravelArticle">
+    update ozt_travel_article
+    set user_id = #{userId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      article_type = #{articleType,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      address = #{address,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=INTEGER},
+      travel_date = #{travelDate,jdbcType=DATE},
+      user_trip_id = #{userTripId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      article = #{article,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ozt.traveler.entity.OztTravelArticle">
+    update ozt_travel_article
+    set user_id = #{userId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      article_type = #{articleType,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      address = #{address,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=INTEGER},
+      travel_date = #{travelDate,jdbcType=DATE},
+      user_trip_id = #{userTripId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.ozt.traveler.OztTravelArticle">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="article_type" jdbcType="TINYINT" property="articleType" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="city_id" jdbcType="INTEGER" property="cityId" />
+    <result column="travel_date" jdbcType="DATE" property="travelDate" />
+    <result column="user_trip_id" jdbcType="INTEGER" property="userTripId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ozt.traveler.OztTravelArticle">
+    <result column="article" jdbcType="LONGVARCHAR" property="article" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, title, article_type, status, address, city_id, travel_date, user_trip_id, 
+    update_time, create_time
+  </sql>
+  <sql id="Blob_Column_List">
+    article
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ozt_travel_article
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ozt_travel_article
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ozt.traveler.OztTravelArticle">
+    insert into ozt_travel_article (id, user_id, title, 
+      article_type, status, address, 
+      city_id, travel_date, user_trip_id, 
+      update_time, create_time, article
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{articleType,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, #{address,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=INTEGER}, #{travelDate,jdbcType=DATE}, #{userTripId,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{article,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ozt.traveler.OztTravelArticle">
+    insert into ozt_travel_article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="articleType != null">
+        article_type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="travelDate != null">
+        travel_date,
+      </if>
+      <if test="userTripId != null">
+        user_trip_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="article != null">
+        article,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="articleType != null">
+        #{articleType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="travelDate != null">
+        #{travelDate,jdbcType=DATE},
+      </if>
+      <if test="userTripId != null">
+        #{userTripId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="article != null">
+        #{article,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ozt.traveler.OztTravelArticle">
+    update ozt_travel_article
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="articleType != null">
+        article_type = #{articleType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="travelDate != null">
+        travel_date = #{travelDate,jdbcType=DATE},
+      </if>
+      <if test="userTripId != null">
+        user_trip_id = #{userTripId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="article != null">
+        article = #{article,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ozt.traveler.OztTravelArticle">
+    update ozt_travel_article
+    set user_id = #{userId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      article_type = #{articleType,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      address = #{address,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=INTEGER},
+      travel_date = #{travelDate,jdbcType=DATE},
+      user_trip_id = #{userTripId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      article = #{article,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ozt.traveler.OztTravelArticle">
+    update ozt_travel_article
+    set user_id = #{userId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      article_type = #{articleType,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      address = #{address,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=INTEGER},
+      travel_date = #{travelDate,jdbcType=DATE},
+      user_trip_id = #{userTripId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

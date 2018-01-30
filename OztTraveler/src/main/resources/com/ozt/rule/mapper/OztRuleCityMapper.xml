@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ozt.rule.dao.OztRuleCityMapper">
+  <resultMap id="BaseResultMap" type="com.ozt.rule.entity.OztRuleCity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="en_name" jdbcType="VARCHAR" property="enName" />
+    <result column="province_id" jdbcType="INTEGER" property="provinceId" />
+    <result column="mail" jdbcType="VARCHAR" property="mail" />
+    <result column="area_code" jdbcType="VARCHAR" property="areaCode" />
+    <result column="is_capital" jdbcType="TINYINT" property="isCapital" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, city, en_name, province_id, mail, area_code, is_capital
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ozt_rule_city
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ozt_rule_city
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ozt.rule.entity.OztRuleCity">
+    insert into ozt_rule_city (id, city, en_name, 
+      province_id, mail, area_code, 
+      is_capital)
+    values (#{id,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{enName,jdbcType=VARCHAR}, 
+      #{provinceId,jdbcType=INTEGER}, #{mail,jdbcType=VARCHAR}, #{areaCode,jdbcType=VARCHAR}, 
+      #{isCapital,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ozt.rule.entity.OztRuleCity">
+    insert into ozt_rule_city
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="enName != null">
+        en_name,
+      </if>
+      <if test="provinceId != null">
+        province_id,
+      </if>
+      <if test="mail != null">
+        mail,
+      </if>
+      <if test="areaCode != null">
+        area_code,
+      </if>
+      <if test="isCapital != null">
+        is_capital,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null">
+        #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null">
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="mail != null">
+        #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null">
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isCapital != null">
+        #{isCapital,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ozt.rule.entity.OztRuleCity">
+    update ozt_rule_city
+    <set>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null">
+        en_name = #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null">
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="mail != null">
+        mail = #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null">
+        area_code = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isCapital != null">
+        is_capital = #{isCapital,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ozt.rule.entity.OztRuleCity">
+    update ozt_rule_city
+    set city = #{city,jdbcType=VARCHAR},
+      en_name = #{enName,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      mail = #{mail,jdbcType=VARCHAR},
+      area_code = #{areaCode,jdbcType=VARCHAR},
+      is_capital = #{isCapital,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
